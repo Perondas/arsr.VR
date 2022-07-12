@@ -16,5 +16,5 @@ arsr_listeners = [];
 
 
 {
-	[_x,"Fired", {_this call arsr_fnc_handleFired}, true, [], true] call CBA_fnc_addClassEventHandler;
+    [_x,"Fired", {_this call arsr_fnc_handleFired}, true, [], true] call CBA_fnc_addClassEventHandler;
 } forEach arsr_artilleryBaseClasses;
