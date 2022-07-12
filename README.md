@@ -6,6 +6,8 @@ An Arma3 artillery sound ranging script
 
 It is possible to set variables on units and vehicles to mark them for a specific side or overrule the general settings.
 
+It is important that the variables are set for the server, as all calculation and checking is done on it, that is why the synchronisation flag (third option of `setVariable`) is set to `true` in the examples.
+
 ### **arsr_receptionAllowed**
 
 _Boolean_
