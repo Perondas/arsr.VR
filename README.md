@@ -28,14 +28,14 @@ Variable on a _listening vehicle_ to enable or disable its active listening capa
 _listener setVariable ["arsr_enabled", false, true];
 ```
 
-### arsr_calcDelay
+### arsr_listenerCalcDelay
 
 _Positive Number or 0_
 
 Variable on a _listening vehicle_ to overrule the "Addon Options" value for the "Time to calculate for listener" setting.
 
 ```sqf
-_listener setVariable ["arsr_calcDelay", 0, true];
+_listener setVariable ["arsr_listenerCalcDelay", 0, true];
 ```
 
 ### arsr_listenerAccuracy

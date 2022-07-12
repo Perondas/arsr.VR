@@ -90,7 +90,7 @@ private _indexBlue = _colors findIf {_x isEqualTo "ColorBlue"};
 // ========= Listener =========
 
 [
-    "arsr_calcDelay",
+    "arsr_listenerCalcDelay",
     "SLIDER",
     ["Time to calculate for listener", "The time that a listener will take between hearing a shot fired, and displaying the direction"],
     ["Mission", "ARSR - Listener"],

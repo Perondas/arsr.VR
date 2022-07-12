@@ -49,7 +49,7 @@ private _artySide = side group (_crew select 0);
             getPos _vic, // position of listener at the time fire was heard
             _vic, // the listener itself
             _time // time when artillery fired
-        ], _vic getVariable ["arsr_calcDelay", arsr_calcDelay]] call CBA_fnc_waitAndExecute;
+        ], _vic getVariable ["arsr_listenerCalcDelay", arsr_listenerCalcDelay]] call CBA_fnc_waitAndExecute;
 
     }, [_originatorPos, _x, _time], _soundDelay] call CBA_fnc_waitAndExecute;
 } foreach (arsr_listeners select {
