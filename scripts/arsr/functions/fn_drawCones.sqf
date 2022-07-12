@@ -3,8 +3,9 @@ private _marker = call arsr_fnc_initMarker;
 _marker setMarkerColorLocal arsr_lineColor;
 _marker setMarkerShapeLocal "polyline";
 
-private _vector1 = vectorNormalized (_interceptPos vectorFromTo (_inAccurateOriginalPos getPos [_accuracy/2, (_interceptPos getDir _inAccurateOriginalPos) + 90]));
-private _vector2 = vectorNormalized (_interceptPos vectorFromTo (_inAccurateOriginalPos getPos [_accuracy/2, (_interceptPos getDir _inAccurateOriginalPos) - 90]));
+private _dir = _interceptPos getDir _inAccurateOriginalPos;
+private _vector1 = vectorNormalized (_interceptPos vectorFromTo (_inAccurateOriginalPos getPos [_accuracy/2, _dir + 90]));
+private _vector2 = vectorNormalized (_interceptPos vectorFromTo (_inAccurateOriginalPos getPos [_accuracy/2, _dir - 90]));
 
 private _polyLine = [];
 {

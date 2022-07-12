@@ -3,9 +3,9 @@
 [
     "arsr_speedOfSound",
     "SLIDER",
-    ["Speed of sound", "Speed of sound in meters per second. Higher means faster detection, lower means slower detection. Not really recommended to change unless you want to change how physics work"],
+    ["Speed of sound", "Speed of sound in meters per second. Higher means faster detection, lower means slower detection. 0 means instant. Not really recommended to change unless you want to change how physics work"],
     ["Mission", "ARSR - General"],
-    [1, 2000, 343, 2],
+    [0, 2000, 343, 2],
     true
 ] call CBA_fnc_addSetting;
 

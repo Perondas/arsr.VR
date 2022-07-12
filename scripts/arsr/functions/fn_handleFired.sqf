@@ -7,13 +7,20 @@ private _time = time;
 
 {
     private _distance =  _x distance _unit;
-    private _soundDelay = _distance / arsr_speedOfSound;
+    private _soundDelay = if (arsr_speedOfSound > 0) then {
+        _distance / arsr_speedOfSound
+    } else {
+        0
+    };
     [{
         params [["_originatorPos", [0, 0, 0]], ["_vic", objNull], ["_time", 0]];
         if !(alive _vic) exitWith {};
         if (arsr_vicStationary && {(speed _vic) isNotEqualTo 0}) exitWith {};
         if (arsr_vicEngineOff && {isEngineOn _vic}) exitWith {};
         if ((_originatorPos distance _vic) > (_vic getVariable ["arsr_listenerMaxDistance", arsr_listenerMaxDistance])) exitWith {};
+
+        private _accuracy = _vic getVariable ["arsr_listenerAccuracy", arsr_listenerAccuracy];
+        private _inAccurateOriginalPos = _originatorPos getPos [(_accuracy / 2) - (random _accuracy), random 360];
 
         [{
             params ["_originatorPos", "_inAccurateOriginalPos", "_interceptPos", "_vic", "_interceptTime"];
@@ -29,7 +36,7 @@ private _time = time;
             ], _targets] call CBA_fnc_targetEvent;
         },[
             _originatorPos,
-            _originatorPos getPos [random (_vic getVariable ["arsr_listenerAccuracy", arsr_listenerAccuracy]), 360],
+            _inAccurateOriginalPos,
             getPos _vic,
             _vic,
             _time
