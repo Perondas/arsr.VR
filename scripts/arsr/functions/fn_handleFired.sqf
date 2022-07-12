@@ -4,6 +4,11 @@ params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projecti
 
 private _originatorPos = getPos _unit;
 private _time = time;
+private _crew = crew (vehicle _unit);
+if (_crew isEqualTo []) exitWith {
+    // no crew, but who fired!?!?
+};
+private _artySide = side group (_crew select 0);
 
 {
     private _distance =  _x distance _unit;
@@ -25,22 +30,30 @@ private _time = time;
         [{
             params ["_originatorPos", "_inAccurateOriginalPos", "_interceptPos", "_vic", "_interceptTime"];
             if !(alive _vic) exitWith {};
-            private _targets = ([] call CBA_fnc_players) select {alive _x && {_x getVariable ["arsr_receptionAllowed", false]}};
+            private _targets = ([] call CBA_fnc_players) select {
+                _x getVariable ["arsr_receptionAllowed", false] && { // can receive in general
+                alive _x && { // is alive
+                (isNull (_vic getVariable ["arsr_side", objNull]) || {(side group _x) isEqualTo (_vic getVariable ["arsr_side", objNull])}) // check if listener has a side assigned and if it matches the receiver units side
+            }}};
             ["arsr_drawData", [
                 _originatorPos,
                 _inAccurateOriginalPos,
-                _interceptPos,
+                _interceptPos, // position of listener
                 format ["%1#%2", _originatorPos, _interceptTime],
                 _vic getVariable ["arsr_listenerAccuracy", arsr_listenerAccuracy],
                 _vic getVariable ["arsr_listenerMaxDistance", arsr_listenerMaxDistance]
             ], _targets] call CBA_fnc_targetEvent;
         },[
-            _originatorPos,
-            _inAccurateOriginalPos,
-            getPos _vic,
-            _vic,
-            _time
+            _originatorPos, // pricise position of artillery
+            _inAccurateOriginalPos, // in accurate position of artillery
+            getPos _vic, // position of listener at the time fire was heard
+            _vic, // the listener itself
+            _time // time when artillery fired
         ], _vic getVariable ["arsr_calcDelay", arsr_calcDelay]] call CBA_fnc_waitAndExecute;
 
     }, [_originatorPos, _x, _time], _soundDelay] call CBA_fnc_waitAndExecute;
-} foreach (arsr_listeners select {_x getVariable ["arsr_enabled", true]});
+} foreach (arsr_listeners select {
+    _x getVariable ["arsr_enabled", true] && { // listener is actively listening
+    // check if the firing vehicle is not on the same side as the listener
+    (_artySide isNotEqualTo (_x getVariable ["arsr_side", objNull]))
+}});
