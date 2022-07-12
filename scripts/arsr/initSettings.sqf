@@ -37,6 +37,15 @@
     }
 ] call CBA_fnc_addSetting;
 
+[
+    "arsr_approxymationMarker",
+    "CHECKBOX",
+    ["Show approxymation marker", "Shows a marker that uses the inaccurate location info to show an approximate position of the artillery piece. This marker will NOT be auto deleted!"],
+    ["Mission", "ARSR - General"],
+    true,
+    true
+] call CBA_fnc_addSetting;
+
 // ========= User settings =========
 
 [
