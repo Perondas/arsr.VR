@@ -1,5 +1,4 @@
-if !isServer exitWith {};
-
+if !(isServer) exitWith {};
 
 arsr_listeners = [];
 {
@@ -13,7 +12,6 @@ arsr_listeners = [];
         arsr_listeners = arsr_listeners - [_vehicle, objNull];
     }, false, [], true] call CBA_fnc_addClassEventHandler;
 } forEach arsr_listenerClasses;
-
 
 {
     [_x,"Fired", {_this call arsr_fnc_handleFired}, true, [], true] call CBA_fnc_addClassEventHandler;

@@ -1,8 +1,15 @@
-params ["_originatorPos","_interceptPos","_interceptTime"];
-// We delete pre existing markers
-deleteMarkerLocal("_USER_DEFINED" + str _interceptPos);
-// We allow the user to delete the marker
-private _arrow = createMarkerLocal [("_USER_DEFINED" + str _interceptPos), _interceptPos];
-_arrow setMarkerType "hd_arrow";
-_arrow setMarkerColor "ColorRed";
-_arrow setMarkerDir (_interceptPos getDir _originatorPos);
+params ["_originatorPos", "", ""];
+
+if !(_originatorPos in arsr_posCache) then {
+    arsr_posCache pushBack _originatorPos;
+    systemChat "Artillery shot detected! Drawing on map!";
+    [{
+        arsr_posCache = arsr_posCache - [_this];
+    }, _originatorPos, 10] call CBA_fnc_waitAndExecute ;
+};
+switch (arsr_drawStyle) do {
+    case 0: arsr_fnc_drawArrows;
+    case 1: arsr_fnc_drawLines;
+    case 2: arsr_fnc_drawCones;
+    default arsr_fnc_drawArrow;
+};
