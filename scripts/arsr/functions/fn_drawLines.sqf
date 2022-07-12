@@ -1,10 +1,6 @@
-params ["", "_inAccurateOriginalPos", "_interceptPos", "", "", "_maxRange"];
-// We delete pre existing markers
-
-deleteMarkerLocal("_USER_DEFINED" + str _interceptPos);
-// We allow the user to delete the marker
-private _marker = createMarkerLocal [("_USER_DEFINED" + str _interceptPos), _interceptPos];
-_marker setMarkerColorLocal "ColorRed";
+params ["_originatorPos", "_inAccurateOriginalPos", "_interceptPos", "", "", "_maxRange"];
+private _marker = call arsr_fnc_initMarker;
+_marker setMarkerColorLocal arsr_lineColor;
 _marker setMarkerShapeLocal "polyline";
 
 private _polyLine = [];

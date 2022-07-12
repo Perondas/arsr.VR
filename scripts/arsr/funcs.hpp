@@ -9,5 +9,6 @@ class arsr {
         class drawArrows{};
         class drawLines{};
         class drawCones{};
+        class initMarker{};
     };
 };

@@ -44,7 +44,37 @@
     "LIST",
     ["Draw style", "Style how the listener data is being displayed"],
     ["Mission", "ARSR - User settings"],
-    [[0, 1, 2], ["Arrows", "Lines", "Cones", 0]],
+    [[0, 1, 2], ["Arrows", "Lines", "Cones"], 1],
+    false
+] call CBA_fnc_addSetting;
+
+[
+    "arsr_autoDeleteMarkerTime",
+    "SLIDER",
+    ["Auto delete Markers", "Time in seconds, -1 means disabled"],
+    ["Mission", "ARSR - User settings"],
+    [-1, 10*60, -1, 0],
+    false
+] call CBA_fnc_addSetting;
+
+private _colors = "true" configClasses (configFile >> "CfgMarkerColors") apply {configName _x};
+private _indexRed = _colors findIf {_x isEqualTo "ColorRed"};
+private _indexBlue = _colors findIf {_x isEqualTo "ColorBlue"};
+[
+    "arsr_markerColor",
+    "LIST",
+    ["Marker color", "Color of markers like crosses or arrows"],
+    ["Mission", "ARSR - User settings"],
+    [_colors, _colors, _indexRed],
+    false
+] call CBA_fnc_addSetting;
+
+[
+    "arsr_lineColor",
+    "LIST",
+    ["Line color", "Color of drawn lines"],
+    ["Mission", "ARSR - User settings"],
+    [_colors, _colors, _indexBlue],
     false
 ] call CBA_fnc_addSetting;
 
