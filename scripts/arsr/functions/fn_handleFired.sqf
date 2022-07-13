@@ -33,7 +33,7 @@ private _artySide = side group (_crew select 0);
             private _targets = ([] call CBA_fnc_players) select {
                 _x getVariable ["arsr_receptionAllowed", false] && { // can receive in general
                 alive _x && { // is alive
-                (isNull (_vic getVariable ["arsr_side", objNull]) || {(side group _x) isEqualTo (_vic getVariable ["arsr_side", objNull])}) // check if listener has a side assigned and if it matches the receiver units side
+                ((_vic getVariable ["arsr_side", sideLogic]) isEqualTo sideLogic || {(side group _x) isEqualTo (_vic getVariable ["arsr_side", sideLogic])}) // check if listener has a side assigned and if it matches the receiver units side
             }}};
             ["arsr_drawData", [
                 _originatorPos,
@@ -55,5 +55,5 @@ private _artySide = side group (_crew select 0);
 } foreach (arsr_listeners select {
     _x getVariable ["arsr_enabled", true] && { // listener is actively listening
     // check if the firing vehicle is not on the same side as the listener
-    (_artySide isNotEqualTo (_x getVariable ["arsr_side", objNull]))
+    (_artySide isNotEqualTo (_x getVariable ["arsr_side", sideLogic]))
 }});

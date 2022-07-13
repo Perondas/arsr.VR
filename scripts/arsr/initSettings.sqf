@@ -14,7 +14,7 @@
     "EDITBOX",
     ["Artillery classes", "The classes of artillery that should be listened to, including all inheriting classes!"],
     ["Mission", "ARSR - General"],
-    "[""B_MBT_01_arty_F""]",
+    "[""B_MBT_01_arty_F"",""MBT_02_arty_base_F""]",
     true,
     {
         params ["_value"];
