@@ -11,8 +11,8 @@ arsr_listeners = [];
         params ["_vehicle"];
         arsr_listeners = arsr_listeners - [_vehicle, objNull];
     }, false] call CBA_fnc_addClassEventHandler;
-} forEach arsr_listenerClasses;
+} forEach (arsr_listenerClassesSetting splitString "[,""']");
 
 {
     [_x,"Fired", {_this call arsr_fnc_handleFired}, true] call CBA_fnc_addClassEventHandler;
-} forEach arsr_artilleryBaseClasses;
+} forEach (arsr_artilleryBaseClassesSetting splitString "[,""']");

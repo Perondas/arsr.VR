@@ -1,4 +1,4 @@
-#include "../initSettings.sqf";
+#include "../initSettings.sqf"
 
 if !(hasInterface) exitWith {};
 arsr_posCache = createHashMap;
