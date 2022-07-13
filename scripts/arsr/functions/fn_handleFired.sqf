@@ -1,6 +1,9 @@
 params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_gunner"];
 
-//TODO: only check when main cannon is fired
+// Check if shot originator was gunner
+if ((gunner (vehicle _unit)) isNotEqualTo _gunner) exitWith {
+    // You are not the gunner;
+};
 
 private _originatorPos = getPos _unit;
 private _time = time;
