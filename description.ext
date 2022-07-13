@@ -1,4 +1,4 @@
 class CfgFunctions {
-	createShortcuts = 1;
-	#include "scripts\arsr\funcs.hpp"
+    createShortcuts = 1;
+    #include "scripts\arsr\funcs.hpp"
 };
