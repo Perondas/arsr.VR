@@ -15,12 +15,7 @@
     ["Artillery classes", "The classes of artillery that should be listened to, including all inheriting classes!"],
     ["Mission", "ARSR - General"],
     "[""B_MBT_01_arty_F"",""MBT_02_arty_base_F""]",
-    true,
-    {
-        params ["_value"];
-        // _value = toLower _value;
-        arsr_artilleryBaseClasses = _value splitString "[,""']";
-    }
+    true
 ] call CBA_fnc_addSetting;
 
 [
@@ -29,12 +24,7 @@
     ["Listener classes", "The classes of vehicles that should be listening, no inheritance!"],
     ["Mission", "ARSR - General"],
     "[""B_Truck_01_ammo_F""]",
-    true,
-    {
-        params ["_value"];
-        // _value = toLower _value;
-        arsr_listenerClasses = _value splitString "[,""']";
-    }
+    true
 ] call CBA_fnc_addSetting;
 
 [
