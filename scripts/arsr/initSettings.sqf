@@ -36,6 +36,39 @@
     true
 ] call CBA_fnc_addSetting;
 
+if !(isNil "ace_explosives") then {
+    [
+        "arsr_allowPlacedExplosives",
+        "CHECKBOX",
+        ["Allow placed explosives as fake artillery shots", "Will make placed explosives count as fake artillery. Useful for TvTs as diversions and to cause confusion"],
+        ["Mission", "ARSR - General"],
+        false,
+        true
+    ] call CBA_fnc_addSetting;
+
+    [
+        "arsr_explosivesAddSide",
+        "CHECKBOX",
+        ["Add side info for explosives", "Adds information of the player side that placed the explosive"],
+        ["Mission", "ARSR - General"],
+        true,
+        true
+    ] call CBA_fnc_addSetting;
+
+    [
+        "arsr_explosivesMinHit",
+        "SLIDER",
+        ["Minimum hit value of explosives'", "Uses the ""hit"" value of the explosive to determine if the eplosion is large enough. For reference; demolition blocks are 500 hit, small IEDs are 200 hit, large IEDs are 2000 hit"],
+        ["Mission", "ARSR - General"],
+        [0, 2000, 500, 0],
+        true
+    ] call CBA_fnc_addSetting;
+} else {
+    arsr_explosivesAddSide = false;
+    arsr_allowPlacedExplosives = false;
+    arsr_explosivesAddSide = 0;
+};
+
 // ========= User settings =========
 
 [
